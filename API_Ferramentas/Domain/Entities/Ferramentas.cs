@@ -1,0 +1,19 @@
+﻿
+using API_Ferramentas.Domain.Enum;
+using System.ComponentModel.DataAnnotations;
+
+namespace API_Ferramentas.Domain.Entities
+{
+    public class Ferramentas
+    {
+        [Key]
+        public int Id { get; set; }
+        public EnumFerramentas TiposdeFerramentas { get; set; }
+        public string Nome { get; set; }
+        public string Marca { get; set; }
+        public int Milimetragem { get; set; }
+        public string Localizacao { get; set; }
+        
+        public List<Movimentacao> Movimentacoes { get; set; }
+    }
+}

@@ -1,0 +1,6 @@
+services:
+  api_ferramentas:
+    image: ${DOCKER_REGISTRY-}apiferramentas
+    build:
+      context: .
+      dockerfile: API_Ferramentas\Dockerfile

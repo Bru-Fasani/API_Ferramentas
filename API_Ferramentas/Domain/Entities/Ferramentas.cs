@@ -13,7 +13,8 @@ namespace API_Ferramentas.Domain.Entities
         public string Marca { get; set; }
         public decimal Milimetragem { get; set; }
         public string Localizacao { get; set; }
-        
-        public List<Movimentacao> Movimentacoes { get; set; }
+       
+
+
     }
 }

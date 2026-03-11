@@ -1,6 +1,8 @@
 ﻿using API_Ferramentas.Aplication.DTO;
+using API_Ferramentas.Infrastructure.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace API_Ferramentas.Presentation
 {
@@ -8,28 +10,40 @@ namespace API_Ferramentas.Presentation
     [ApiController]
     public class FerramentasController : ControllerBase
     {
-        [HttpGet("Listar Todas As Ferramentas")]
-        public ActionResult ListarFerramentas()
+        private readonly IFerramentaRepository _ferramentaRepository;
+        public FerramentasController(IFerramentaRepository repository)
         {
-            return Ok("Lista de ferramentas retornada com sucesso!");
+              _ferramentaRepository = repository;
         }
 
-        [HttpGet("Listar Ferramenta Por Categoria")]
-        public ActionResult ListarFerramentaPorCategoria(string categoria)
+
+        [HttpGet("Obter Ferramenta Por Categoria")]
+        public ActionResult ObterFerramentaPorCategoria(string categoria)
         {
             return Ok($"Lista de ferramentas da categoria {categoria} retornada com sucesso!");
         }
 
-        [HttpGet("Listar Ferramenta Por Id")]
-        public ActionResult ListarFerramentaPorId(int Id)
+        [HttpGet("Obter Ferramenta Por Nome")]
+        public ActionResult ObterFerramentaPorNome(string nome)
         {
-            return Ok($"Ferramenta com Id {Id} retornada com sucesso!");
+            return Ok($"Lista de ferramentas com o nome {nome} retornada com sucesso!");
+        }
+
+        [HttpGet("Obter Ferramenta Por Id")]
+        public async Task<ActionResult> ObterFerramentaPorId(int Id)
+        {
+           return Ok($"Ferramenta com Id {Id} retornada com sucesso!");
         }
 
 
         [HttpPost("Cadastrar Nova Ferramenta")]
-        public ActionResult CadastrarFerramenta(FerramentasDTO toolsDTO)
+        public async Task<ActionResult> CadastrarFerramenta(FerramentasDTO toolsDTO)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            //var novaferramenta = await _ferramentaRepository.Adicionar();  -> Não aceita o parâmetro
+
             return Ok("Ferramenta cadastrada com sucesso!");
         }
 

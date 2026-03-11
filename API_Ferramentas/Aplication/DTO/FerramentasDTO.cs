@@ -28,5 +28,8 @@ namespace API_Ferramentas.Aplication.DTO
         [MaxLength(40)]
         public string Localizacao { get; set; }
 
+        [Required]
+        public bool Disponibilidade { get; set; }   
+
     }
 }

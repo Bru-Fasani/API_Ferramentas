@@ -1,0 +1,15 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA:
+      
+
+
+  api_ferramentas:
+    image: ${DOCKER_REGISTRY-}apiferramentas
+    build:
+      context: .
+      dockerfile: API_Ferramentas\Dockerfile
+
